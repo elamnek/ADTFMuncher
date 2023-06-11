@@ -34,20 +34,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPostgresConn = new System.Windows.Forms.TextBox();
-            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnLoadADTF = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnStartCapture = new System.Windows.Forms.Button();
             this.txtSerialPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnTestCommPort = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRunID = new System.Windows.Forms.TextBox();
+            this.btnIncrementRunID = new System.Windows.Forms.Button();
+            this.btnStopCapture = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnLoad);
+            this.groupBox1.Controls.Add(this.btnLoadADTF);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtPostgresConn);
             this.groupBox1.Controls.Add(this.label1);
@@ -100,31 +104,31 @@
             this.txtPostgresConn.Size = new System.Drawing.Size(758, 26);
             this.txtPostgresConn.TabIndex = 3;
             // 
-            // btnLoad
+            // btnLoadADTF
             // 
-            this.btnLoad.Location = new System.Drawing.Point(30, 223);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(86, 31);
-            this.btnLoad.TabIndex = 5;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoadADTF.Location = new System.Drawing.Point(30, 223);
+            this.btnLoadADTF.Name = "btnLoadADTF";
+            this.btnLoadADTF.Size = new System.Drawing.Size(183, 37);
+            this.btnLoadADTF.TabIndex = 5;
+            this.btnLoadADTF.Text = "Load ADTF";
+            this.btnLoadADTF.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(27, 101);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 31);
+            this.button1.Size = new System.Drawing.Size(186, 37);
             this.button1.TabIndex = 6;
             this.button1.Text = "Convert Subsecond";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // btnStartCapture
             // 
-            this.btnStartCapture.Location = new System.Drawing.Point(383, 304);
+            this.btnStartCapture.Location = new System.Drawing.Point(475, 304);
             this.btnStartCapture.Name = "btnStartCapture";
-            this.btnStartCapture.Size = new System.Drawing.Size(128, 31);
+            this.btnStartCapture.Size = new System.Drawing.Size(73, 31);
             this.btnStartCapture.TabIndex = 2;
-            this.btnStartCapture.Text = "Start Capture";
+            this.btnStartCapture.Text = "Start";
             this.btnStartCapture.UseVisualStyleBackColor = true;
             // 
             // txtSerialPort
@@ -161,11 +165,49 @@
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(290, 311);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Run ID";
+            // 
+            // txtRunID
+            // 
+            this.txtRunID.Location = new System.Drawing.Point(356, 306);
+            this.txtRunID.Name = "txtRunID";
+            this.txtRunID.Size = new System.Drawing.Size(60, 26);
+            this.txtRunID.TabIndex = 8;
+            // 
+            // btnIncrementRunID
+            // 
+            this.btnIncrementRunID.Location = new System.Drawing.Point(422, 304);
+            this.btnIncrementRunID.Name = "btnIncrementRunID";
+            this.btnIncrementRunID.Size = new System.Drawing.Size(38, 31);
+            this.btnIncrementRunID.TabIndex = 10;
+            this.btnIncrementRunID.Text = "+";
+            this.btnIncrementRunID.UseVisualStyleBackColor = true;
+            // 
+            // btnStopCapture
+            // 
+            this.btnStopCapture.Location = new System.Drawing.Point(554, 304);
+            this.btnStopCapture.Name = "btnStopCapture";
+            this.btnStopCapture.Size = new System.Drawing.Size(73, 31);
+            this.btnStopCapture.TabIndex = 11;
+            this.btnStopCapture.Text = "Stop";
+            this.btnStopCapture.UseVisualStyleBackColor = true;
+            // 
             // ADTFForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 354);
+            this.Controls.Add(this.btnStopCapture);
+            this.Controls.Add(this.btnIncrementRunID);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtRunID);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnTestCommPort);
             this.Controls.Add(this.label3);
@@ -192,12 +234,16 @@
         private System.Windows.Forms.TextBox txtPostgresConn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnLoadADTF;
         private System.Windows.Forms.Button btnStartCapture;
         private System.Windows.Forms.TextBox txtSerialPort;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnTestCommPort;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtRunID;
+        private System.Windows.Forms.Button btnIncrementRunID;
+        private System.Windows.Forms.Button btnStopCapture;
     }
 }
 
