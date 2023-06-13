@@ -102,6 +102,15 @@ namespace ADTFMuncher
                         {
                             m_swRangeDataFile.WriteLine(strReceived);
                             m_swRangeDataFile.Flush();
+
+                            int intVal = progressBar1.Value;
+                            intVal = intVal + 10;
+                            if (intVal > 100)
+                            {
+                                intVal = 0;
+                            }
+                            SetPBValue(progressBar1, intVal);
+
                         }
 
                     }
@@ -150,6 +159,10 @@ namespace ADTFMuncher
         public static void SetControlText(Control ctl, string text)
         {
             ctl.Invoke((MethodInvoker)delegate { ctl.Text = text; });
+        }
+        public static void SetPBValue(ProgressBar PB, int intValue)
+        {
+            PB.Invoke((MethodInvoker)delegate { PB.Value = intValue; });
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -206,6 +219,10 @@ namespace ADTFMuncher
             {
                 string strOutLogFile = Path.Combine(txtOuputDir.Text, "run_" + txtRunID.Text + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".adtf");
                 m_swRangeDataFile = new System.IO.StreamWriter(strOutLogFile, true);
+
+                SetPBValue(progressBar1, 0);
+
+
             }
             catch (Exception ex)
             {

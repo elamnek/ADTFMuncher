@@ -57,8 +57,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.gbMetaControls = new System.Windows.Forms.GroupBox();
             this.btnSync = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.meta_id_13 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbMetaControls.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,7 +87,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(27, 101);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 37);
+            this.button1.Size = new System.Drawing.Size(168, 35);
             this.button1.TabIndex = 6;
             this.button1.Text = "Convert Subsecond";
             this.button1.UseVisualStyleBackColor = true;
@@ -88,9 +95,9 @@
             // 
             // btnLoadADTF
             // 
-            this.btnLoadADTF.Location = new System.Drawing.Point(30, 223);
+            this.btnLoadADTF.Location = new System.Drawing.Point(27, 223);
             this.btnLoadADTF.Name = "btnLoadADTF";
-            this.btnLoadADTF.Size = new System.Drawing.Size(183, 37);
+            this.btnLoadADTF.Size = new System.Drawing.Size(165, 35);
             this.btnLoadADTF.TabIndex = 5;
             this.btnLoadADTF.Text = "Load ADTF";
             this.btnLoadADTF.UseVisualStyleBackColor = true;
@@ -99,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 154);
+            this.label2.Location = new System.Drawing.Point(30, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(154, 20);
             this.label2.TabIndex = 4;
@@ -107,15 +114,15 @@
             // 
             // txtPostgresConn
             // 
-            this.txtPostgresConn.Location = new System.Drawing.Point(30, 191);
+            this.txtPostgresConn.Location = new System.Drawing.Point(27, 191);
             this.txtPostgresConn.Name = "txtPostgresConn";
-            this.txtPostgresConn.Size = new System.Drawing.Size(758, 26);
+            this.txtPostgresConn.Size = new System.Drawing.Size(761, 26);
             this.txtPostgresConn.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 31);
+            this.label1.Location = new System.Drawing.Point(30, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 20);
             this.label1.TabIndex = 2;
@@ -140,7 +147,7 @@
             // 
             // btnStartCapture
             // 
-            this.btnStartCapture.Location = new System.Drawing.Point(676, 360);
+            this.btnStartCapture.Location = new System.Drawing.Point(73, 94);
             this.btnStartCapture.Name = "btnStartCapture";
             this.btnStartCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStartCapture.TabIndex = 2;
@@ -150,7 +157,7 @@
             // 
             // txtSerialPort
             // 
-            this.txtSerialPort.Location = new System.Drawing.Point(117, 300);
+            this.txtSerialPort.Location = new System.Drawing.Point(119, 42);
             this.txtSerialPort.Name = "txtSerialPort";
             this.txtSerialPort.Size = new System.Drawing.Size(76, 26);
             this.txtSerialPort.TabIndex = 4;
@@ -159,7 +166,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 305);
+            this.label3.Location = new System.Drawing.Point(24, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 20);
             this.label3.TabIndex = 5;
@@ -167,9 +174,9 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(26, 342);
+            this.btnConnect.Location = new System.Drawing.Point(59, 92);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(90, 48);
+            this.btnConnect.Size = new System.Drawing.Size(90, 35);
             this.btnConnect.TabIndex = 6;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -177,9 +184,9 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(742, 517);
+            this.btnExit.Location = new System.Drawing.Point(742, 513);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(86, 47);
+            this.btnExit.Size = new System.Drawing.Size(86, 35);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -188,7 +195,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(658, 327);
+            this.label4.Location = new System.Drawing.Point(55, 61);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 20);
             this.label4.TabIndex = 9;
@@ -196,7 +203,7 @@
             // 
             // txtRunID
             // 
-            this.txtRunID.Location = new System.Drawing.Point(724, 322);
+            this.txtRunID.Location = new System.Drawing.Point(121, 56);
             this.txtRunID.Name = "txtRunID";
             this.txtRunID.Size = new System.Drawing.Size(60, 26);
             this.txtRunID.TabIndex = 8;
@@ -204,7 +211,7 @@
             // 
             // btnIncrementRunID
             // 
-            this.btnIncrementRunID.Location = new System.Drawing.Point(790, 320);
+            this.btnIncrementRunID.Location = new System.Drawing.Point(187, 54);
             this.btnIncrementRunID.Name = "btnIncrementRunID";
             this.btnIncrementRunID.Size = new System.Drawing.Size(38, 31);
             this.btnIncrementRunID.TabIndex = 10;
@@ -214,7 +221,7 @@
             // 
             // btnStopCapture
             // 
-            this.btnStopCapture.Location = new System.Drawing.Point(755, 360);
+            this.btnStopCapture.Location = new System.Drawing.Point(152, 94);
             this.btnStopCapture.Name = "btnStopCapture";
             this.btnStopCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStopCapture.TabIndex = 11;
@@ -225,7 +232,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 26);
+            this.label5.Location = new System.Drawing.Point(49, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 20);
             this.label5.TabIndex = 13;
@@ -233,43 +240,58 @@
             // 
             // meta_id_39
             // 
-            this.meta_id_39.Location = new System.Drawing.Point(98, 24);
+            this.meta_id_39.BackColor = System.Drawing.Color.GreenYellow;
+            this.meta_id_39.Location = new System.Drawing.Point(116, 73);
             this.meta_id_39.Name = "meta_id_39";
-            this.meta_id_39.Size = new System.Drawing.Size(132, 26);
+            this.meta_id_39.ReadOnly = true;
+            this.meta_id_39.Size = new System.Drawing.Size(102, 26);
             this.meta_id_39.TabIndex = 12;
+            this.meta_id_39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // meta_id_40
             // 
-            this.meta_id_40.Location = new System.Drawing.Point(98, 55);
+            this.meta_id_40.BackColor = System.Drawing.Color.Aquamarine;
+            this.meta_id_40.Location = new System.Drawing.Point(116, 104);
             this.meta_id_40.Name = "meta_id_40";
-            this.meta_id_40.Size = new System.Drawing.Size(132, 26);
+            this.meta_id_40.ReadOnly = true;
+            this.meta_id_40.Size = new System.Drawing.Size(102, 26);
             this.meta_id_40.TabIndex = 14;
+            this.meta_id_40.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // meta_id_41
             // 
-            this.meta_id_41.Location = new System.Drawing.Point(98, 86);
+            this.meta_id_41.BackColor = System.Drawing.Color.Violet;
+            this.meta_id_41.Location = new System.Drawing.Point(116, 135);
             this.meta_id_41.Name = "meta_id_41";
-            this.meta_id_41.Size = new System.Drawing.Size(132, 26);
+            this.meta_id_41.ReadOnly = true;
+            this.meta_id_41.Size = new System.Drawing.Size(102, 26);
             this.meta_id_41.TabIndex = 15;
+            this.meta_id_41.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // meta_id_42
             // 
-            this.meta_id_42.Location = new System.Drawing.Point(98, 117);
+            this.meta_id_42.BackColor = System.Drawing.Color.Khaki;
+            this.meta_id_42.Location = new System.Drawing.Point(116, 166);
             this.meta_id_42.Name = "meta_id_42";
-            this.meta_id_42.Size = new System.Drawing.Size(132, 26);
+            this.meta_id_42.ReadOnly = true;
+            this.meta_id_42.Size = new System.Drawing.Size(102, 26);
             this.meta_id_42.TabIndex = 16;
+            this.meta_id_42.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // meta_id_43
             // 
-            this.meta_id_43.Location = new System.Drawing.Point(98, 148);
+            this.meta_id_43.BackColor = System.Drawing.Color.MistyRose;
+            this.meta_id_43.Location = new System.Drawing.Point(116, 197);
             this.meta_id_43.Name = "meta_id_43";
-            this.meta_id_43.Size = new System.Drawing.Size(132, 26);
+            this.meta_id_43.ReadOnly = true;
+            this.meta_id_43.Size = new System.Drawing.Size(102, 26);
             this.meta_id_43.TabIndex = 17;
+            this.meta_id_43.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(68, 58);
+            this.label6.Location = new System.Drawing.Point(86, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 20);
             this.label6.TabIndex = 18;
@@ -278,7 +300,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(68, 89);
+            this.label7.Location = new System.Drawing.Point(86, 138);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 20);
             this.label7.TabIndex = 19;
@@ -287,7 +309,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 120);
+            this.label8.Location = new System.Drawing.Point(32, 169);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 20);
             this.label8.TabIndex = 20;
@@ -296,7 +318,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 151);
+            this.label9.Location = new System.Drawing.Point(56, 200);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 20);
             this.label9.TabIndex = 21;
@@ -304,6 +326,8 @@
             // 
             // gbMetaControls
             // 
+            this.gbMetaControls.Controls.Add(this.meta_id_13);
+            this.gbMetaControls.Controls.Add(this.label10);
             this.gbMetaControls.Controls.Add(this.meta_id_43);
             this.gbMetaControls.Controls.Add(this.label9);
             this.gbMetaControls.Controls.Add(this.meta_id_39);
@@ -314,38 +338,86 @@
             this.gbMetaControls.Controls.Add(this.label6);
             this.gbMetaControls.Controls.Add(this.meta_id_41);
             this.gbMetaControls.Controls.Add(this.meta_id_42);
-            this.gbMetaControls.Location = new System.Drawing.Point(299, 320);
+            this.gbMetaControls.Location = new System.Drawing.Point(266, 305);
             this.gbMetaControls.Name = "gbMetaControls";
-            this.gbMetaControls.Size = new System.Drawing.Size(254, 207);
+            this.gbMetaControls.Size = new System.Drawing.Size(263, 243);
             this.gbMetaControls.TabIndex = 22;
             this.gbMetaControls.TabStop = false;
+            this.gbMetaControls.Text = "ADTF Data";
             // 
             // btnSync
             // 
-            this.btnSync.Location = new System.Drawing.Point(26, 396);
+            this.btnSync.Location = new System.Drawing.Point(59, 136);
             this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(90, 48);
+            this.btnSync.Size = new System.Drawing.Size(90, 35);
             this.btnSync.TabIndex = 23;
             this.btnSync.Text = "Sync";
             this.btnSync.UseVisualStyleBackColor = true;
             this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnSync);
+            this.groupBox2.Controls.Add(this.txtSerialPort);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.btnConnect);
+            this.groupBox2.Location = new System.Drawing.Point(20, 305);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(228, 243);
+            this.groupBox2.TabIndex = 24;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Serial Port";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.progressBar1);
+            this.groupBox3.Controls.Add(this.btnStopCapture);
+            this.groupBox3.Controls.Add(this.btnStartCapture);
+            this.groupBox3.Controls.Add(this.txtRunID);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.btnIncrementRunID);
+            this.groupBox3.Location = new System.Drawing.Point(547, 305);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(281, 202);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Run Info";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(20, 165);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(237, 13);
+            this.progressBar1.TabIndex = 12;
+            // 
+            // meta_id_13
+            // 
+            this.meta_id_13.BackColor = System.Drawing.Color.LemonChiffon;
+            this.meta_id_13.Location = new System.Drawing.Point(67, 38);
+            this.meta_id_13.Name = "meta_id_13";
+            this.meta_id_13.ReadOnly = true;
+            this.meta_id_13.Size = new System.Drawing.Size(171, 26);
+            this.meta_id_13.TabIndex = 22;
+            this.meta_id_13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(15, 41);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 20);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Time";
+            // 
             // ADTFForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 586);
-            this.Controls.Add(this.btnSync);
+            this.ClientSize = new System.Drawing.Size(845, 563);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbMetaControls);
-            this.Controls.Add(this.btnStopCapture);
-            this.Controls.Add(this.btnIncrementRunID);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtRunID);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtSerialPort);
-            this.Controls.Add(this.btnStartCapture);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -357,8 +429,11 @@
             this.groupBox1.PerformLayout();
             this.gbMetaControls.ResumeLayout(false);
             this.gbMetaControls.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -393,6 +468,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox gbMetaControls;
         private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TextBox meta_id_13;
+        private System.Windows.Forms.Label label10;
     }
 }
 
