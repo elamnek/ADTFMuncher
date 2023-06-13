@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace ADTFMuncher
 {
@@ -23,7 +24,7 @@ namespace ADTFMuncher
 
         //create the serial connection
         private SerialPort sp;
-        //private NpgsqlConnection m_connPG = null;
+        private NpgsqlConnection m_connPG = null;
 
         private System.IO.StreamWriter m_swRangeDataFile;
 
@@ -354,6 +355,26 @@ namespace ADTFMuncher
             try
             {
 
+                //do checks
+                if (txtPostgresConn.Text.Length == 0)
+                {
+                    MessageBox.Show("Postgres database connection has not been set", "Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                //open database
+                if (m_connPG != null)
+                {
+                    m_connPG.Close();
+                }
+                m_connPG = new NpgsqlConnection(txtPostgresConn.Text);
+                m_connPG.Open();
+
+                //get DT realtime data table def
+                Hashtable hashTableDefs = GetTableDefs("realtime_table", "realtime_column");
+                ArrayList listRealtimeDataTableColDefs = (ArrayList)hashTableDefs["dt_ts_realtime_data"];
+
+
                 OpenFileDialog fileBrowser = new OpenFileDialog();
                 fileBrowser.Filter = "ADTF files (*.adtf)|*.adtf|All files (*.*)|*.*";
                 fileBrowser.Title = "Specify a ADTF file to load into DT database...";
@@ -366,25 +387,27 @@ namespace ADTFMuncher
                 {
 
                     string strFileName = fileBrowser.FileName;
-                    LoadIntoDT(strFileName);
+                    LoadIntoDT(strFileName, listRealtimeDataTableColDefs);
+
                     //MessageBox.Show(fileBrowser.FileName);
                 }
 
                 fileBrowser.Dispose();
                 fileBrowser = null;
 
+                m_connPG.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void LoadIntoDT(string strFileName)
+        private void LoadIntoDT(string strFileNamem,ArrayList listRealtimeDataTableColDefs)
         {
             try
             {
 
-                RealtimeInsertIntoDT(strReceived, 2, intRunNum, m_listRealtimeDataTableColDefs);
+                RealtimeInsertIntoDT(strReceived, 2, intRunNum, listRealtimeDataTableColDefs);
 
             }
             catch (Exception ex)
@@ -539,6 +562,80 @@ namespace ADTFMuncher
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+        private Hashtable GetTableDefs(string strDestTableCol, string strDestColCol)
+        {
+            try
+            {
+                Hashtable hashTableDefs = new Hashtable();
+
+                string strPreviousDestTable = "";
+
+                ArrayList listColDefs = new ArrayList();
+
+                //get the metadata records
+                NpgsqlCommand commPG = new NpgsqlCommand("select " + strDestTableCol + "," + strDestColCol + ",expected_min_value,expected_max_value,metadata_id,dest_column_type from dt_data_config order by " + strDestTableCol, m_connPG);
+                NpgsqlDataReader readerPG = commPG.ExecuteReader();
+                while (readerPG.Read())
+                {
+                    object objDestTable = readerPG.GetValue(0);
+                    object objDestColumn = readerPG.GetValue(1);
+                    object objMinVal = readerPG.GetValue(2);
+                    object objMaxVal = readerPG.GetValue(3);
+                    object objMetaDataID = readerPG.GetValue(4);
+                    object objDestColumnType = readerPG.GetValue(5);
+
+                    if (objDestTable != null && objDestColumn != null && objMetaDataID != null && objDestColumnType != null)
+                    {
+                        string strDestTable = objDestTable.ToString();
+                        string strDestColumn = objDestColumn.ToString();
+                        string strDestColumnType = objDestColumnType.ToString();
+
+                        if (strDestTable.Length > 0 && strDestColumn.Length > 0 && strDestColumnType.Length > 0)
+                        {
+
+                            int intMetaDataID = int.Parse(objMetaDataID.ToString());
+
+                            Hashtable hashColumnDef = new Hashtable();
+                            hashColumnDef.Add("METADATAID", intMetaDataID);
+                            hashColumnDef.Add("DESTCOL", strDestColumn);
+                            hashColumnDef.Add("DESTCOLTYPE", strDestColumnType);
+                            hashColumnDef.Add("MINVAL", objMinVal);
+                            hashColumnDef.Add("MAXVAL", objMaxVal);
+
+                            if (strDestTable == strPreviousDestTable || strPreviousDestTable.Length == 0)
+                            {
+                                //same table - keep adding columns to the list of cols
+                                listColDefs.Add(hashColumnDef);
+
+                            }
+                            else
+                            {
+                                //new table - store the previous column list against the previous table name
+                                hashTableDefs.Add(strPreviousDestTable, listColDefs);
+
+                                //create a new column def list
+                                listColDefs = new ArrayList();
+                                listColDefs.Add(hashColumnDef);
+                            }
+
+                            strPreviousDestTable = strDestTable;
+                        }
+                    }
+                }
+                //there will always be one last column def list - store this
+                hashTableDefs.Add(strPreviousDestTable, listColDefs);
+
+                readerPG.Close();
+                commPG.Dispose();
+
+                return hashTableDefs;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
             }
         }
     }
