@@ -56,6 +56,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.gbMetaControls = new System.Windows.Forms.GroupBox();
+            this.btnSync = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbMetaControls.SuspendLayout();
             this.SuspendLayout();
@@ -139,7 +140,7 @@
             // 
             // btnStartCapture
             // 
-            this.btnStartCapture.Location = new System.Drawing.Point(475, 304);
+            this.btnStartCapture.Location = new System.Drawing.Point(676, 360);
             this.btnStartCapture.Name = "btnStartCapture";
             this.btnStartCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStartCapture.TabIndex = 2;
@@ -149,7 +150,7 @@
             // 
             // txtSerialPort
             // 
-            this.txtSerialPort.Location = new System.Drawing.Point(112, 304);
+            this.txtSerialPort.Location = new System.Drawing.Point(117, 300);
             this.txtSerialPort.Name = "txtSerialPort";
             this.txtSerialPort.Size = new System.Drawing.Size(76, 26);
             this.txtSerialPort.TabIndex = 4;
@@ -158,7 +159,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 309);
+            this.label3.Location = new System.Drawing.Point(22, 305);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 20);
             this.label3.TabIndex = 5;
@@ -166,7 +167,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(194, 303);
+            this.btnConnect.Location = new System.Drawing.Point(26, 342);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(90, 48);
             this.btnConnect.TabIndex = 6;
@@ -176,7 +177,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(739, 304);
+            this.btnExit.Location = new System.Drawing.Point(742, 517);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(86, 47);
             this.btnExit.TabIndex = 7;
@@ -187,7 +188,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(290, 311);
+            this.label4.Location = new System.Drawing.Point(658, 327);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 20);
             this.label4.TabIndex = 9;
@@ -195,7 +196,7 @@
             // 
             // txtRunID
             // 
-            this.txtRunID.Location = new System.Drawing.Point(356, 306);
+            this.txtRunID.Location = new System.Drawing.Point(724, 322);
             this.txtRunID.Name = "txtRunID";
             this.txtRunID.Size = new System.Drawing.Size(60, 26);
             this.txtRunID.TabIndex = 8;
@@ -203,7 +204,7 @@
             // 
             // btnIncrementRunID
             // 
-            this.btnIncrementRunID.Location = new System.Drawing.Point(422, 304);
+            this.btnIncrementRunID.Location = new System.Drawing.Point(790, 320);
             this.btnIncrementRunID.Name = "btnIncrementRunID";
             this.btnIncrementRunID.Size = new System.Drawing.Size(38, 31);
             this.btnIncrementRunID.TabIndex = 10;
@@ -213,7 +214,7 @@
             // 
             // btnStopCapture
             // 
-            this.btnStopCapture.Location = new System.Drawing.Point(554, 304);
+            this.btnStopCapture.Location = new System.Drawing.Point(755, 360);
             this.btnStopCapture.Name = "btnStopCapture";
             this.btnStopCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStopCapture.TabIndex = 11;
@@ -313,17 +314,28 @@
             this.gbMetaControls.Controls.Add(this.label6);
             this.gbMetaControls.Controls.Add(this.meta_id_41);
             this.gbMetaControls.Controls.Add(this.meta_id_42);
-            this.gbMetaControls.Location = new System.Drawing.Point(17, 357);
+            this.gbMetaControls.Location = new System.Drawing.Point(299, 320);
             this.gbMetaControls.Name = "gbMetaControls";
             this.gbMetaControls.Size = new System.Drawing.Size(254, 207);
             this.gbMetaControls.TabIndex = 22;
             this.gbMetaControls.TabStop = false;
+            // 
+            // btnSync
+            // 
+            this.btnSync.Location = new System.Drawing.Point(26, 396);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(90, 48);
+            this.btnSync.TabIndex = 23;
+            this.btnSync.Text = "Sync";
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
             // ADTFForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 586);
+            this.Controls.Add(this.btnSync);
             this.Controls.Add(this.gbMetaControls);
             this.Controls.Add(this.btnStopCapture);
             this.Controls.Add(this.btnIncrementRunID);
@@ -339,6 +351,8 @@
             this.MaximizeBox = false;
             this.Name = "ADTFForm";
             this.Text = "ADTF Muncher";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ADTFForm_FormClosing);
+            this.Load += new System.EventHandler(this.ADTFForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gbMetaControls.ResumeLayout(false);
@@ -378,6 +392,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox gbMetaControls;
+        private System.Windows.Forms.Button btnSync;
     }
 }
 

@@ -28,6 +28,39 @@ namespace ADTFMuncher
 
         private System.IO.StreamWriter m_swRangeDataFile;
 
+
+        private void ADTFForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                txtSerialPort.Text = Properties.Settings.Default.SerialPort;
+                txtPostgresConn.Text = Properties.Settings.Default.PostgresConn;
+                txtRunID.Text = Properties.Settings.Default.RunID;
+                txtOuputDir.Text = Properties.Settings.Default.OuputDir;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void ADTFForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.SerialPort = txtSerialPort.Text;
+                Properties.Settings.Default.PostgresConn = txtPostgresConn.Text;
+                Properties.Settings.Default.OuputDir = txtOuputDir.Text;
+                Properties.Settings.Default.RunID = txtRunID.Text;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         private void btnConnect_Click(object sender, EventArgs e)
         {
             try
@@ -356,6 +389,13 @@ namespace ADTFMuncher
             {
 
                 //do checks
+                int intRunID;
+                if (!int.TryParse(txtRunID.Text, out intRunID))
+                {
+                    MessageBox.Show("Run ID not set correctly", "Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 if (txtPostgresConn.Text.Length == 0)
                 {
                     MessageBox.Show("Postgres database connection has not been set", "Settings Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -387,7 +427,7 @@ namespace ADTFMuncher
                 {
 
                     string strFileName = fileBrowser.FileName;
-                    LoadIntoDT(strFileName, listRealtimeDataTableColDefs);
+                    LoadIntoDT(strFileName, intRunID,listRealtimeDataTableColDefs);
 
                     //MessageBox.Show(fileBrowser.FileName);
                 }
@@ -402,13 +442,32 @@ namespace ADTFMuncher
                 MessageBox.Show(ex.ToString());
             }
         }
-        private void LoadIntoDT(string strFileNamem,ArrayList listRealtimeDataTableColDefs)
+        private void LoadIntoDT(string strFileName, int intRunID, ArrayList listRealtimeDataTableColDefs)
         {
             try
             {
 
-                RealtimeInsertIntoDT(strReceived, 2, intRunNum, listRealtimeDataTableColDefs);
+                string strInDateFormat = "H:m:s d/M/yyyy";
+                string strOutDateFormat = "yyyy-MM-dd HH:mm:ss";
 
+                //handle sub second date format
+                if (strFileName.EndsWith("_subsecond.LOG") || strFileName.EndsWith("_subsecond.adtf"))
+                {
+                    strInDateFormat = "H:m:s.f d/M/yyyy";
+                    strOutDateFormat = "yyyy-MM-dd HH:mm:ss.f";
+                }
+
+                StreamReader reader = File.OpenText(strFileName);
+                while (reader.Peek() != -1)
+                {
+                    RealtimeInsertIntoDT(reader.ReadLine(), 3, intRunID, listRealtimeDataTableColDefs, strInDateFormat, strOutDateFormat);
+
+                }
+                reader.Close();
+                
+
+                MessageBox.Show("Load complete!");
+            
             }
             catch (Exception ex)
             {
@@ -416,7 +475,7 @@ namespace ADTFMuncher
             }
         }
 
-        private void RealtimeInsertIntoDT(string strReceived, int intDataChannel, int intRunNum, ArrayList listColDefs)
+        private void RealtimeInsertIntoDT(string strReceived, int intDataChannel, int intRunID, ArrayList listColDefs,string strInDateFormat,string strOutDateFormat)
         {
             try
             {
@@ -425,7 +484,7 @@ namespace ADTFMuncher
                 {
                     return;
                 }
-
+  
                 //read a line and split it up
                 String strLine = strReceived.Trim().TrimStart('{').TrimEnd('}');
                 String[] arrayLine = strLine.Split(new char[] { ',' }, StringSplitOptions.None);
@@ -445,24 +504,15 @@ namespace ADTFMuncher
 
                         if (intMetaID == 13)
                         {
-                            int intMillis = -1;
-                            if (strValue.Contains("#"))
-                            {
-                                //this is a sub second time with millis at the start - split this off
-                                string[] arrayTime = strValue.Split(new char[] { '#' }, StringSplitOptions.None);
-                                intMillis = int.Parse(arrayTime[0]);
-                                strValue = arrayTime[1].Trim();
-                            }
-
-
-                            DateTime dteThis = DateTime.ParseExact(strValue, "H:m:s d/M/yyyy", null); //16:56:13 5/2/2023
+                            
+                            DateTime dteThis = DateTime.ParseExact(strValue, strInDateFormat, null); //16:56:13 5/2/2023
 
                             //datetimes need to be inserted in the local timezone
                             //the postgres timestamptz field type is time zone aware and assumes any insert datetime is local
                             //it will store the actual datetime as utc, but whenever it is queried using sql the local time will be returned
                             //the postgres database timezone is stored against the postgres server properties and this is used to define
                             //what timezone the data is displayed in
-                            strTime = "'" + dteThis.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                            strTime = "'" + dteThis.ToString(strOutDateFormat) + "'";
                         }
                         else
                         {
@@ -478,7 +528,7 @@ namespace ADTFMuncher
 
                     //this is a destination table
                     string strColumns = "time,data_channel,run_number";
-                    string strValues = strTime + "," + intDataChannel.ToString() + "," + intRunNum.ToString();
+                    string strValues = strTime + "," + intDataChannel.ToString() + "," + intRunID.ToString();
 
                     //go through columns and build sql 
                     foreach (Hashtable hashColDef in listColDefs)
@@ -637,6 +687,25 @@ namespace ADTFMuncher
                 MessageBox.Show(ex.ToString());
                 return null;
             }
+        }
+
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+
+            DateTime dteNow = DateTime.Now;
+            string strParam = dteNow.Year.ToString() + "|" + dteNow.Month.ToString() + "|" + dteNow.Day.ToString() + "|" + dteNow.Hour.ToString() + "|" + dteNow.Minute.ToString() + "|" + dteNow.Second.ToString();
+
+
+            //try to set range finder time
+            try
+            {
+                sp.WriteLine("TIMESET," + strParam);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not set time on range finder: " + ex.Message);
+            }
+
         }
     }
 }
