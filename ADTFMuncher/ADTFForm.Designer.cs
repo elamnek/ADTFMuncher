@@ -147,7 +147,7 @@
             // 
             // btnStartCapture
             // 
-            this.btnStartCapture.Location = new System.Drawing.Point(73, 94);
+            this.btnStartCapture.Location = new System.Drawing.Point(73, 97);
             this.btnStartCapture.Name = "btnStartCapture";
             this.btnStartCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStartCapture.TabIndex = 2;
@@ -208,6 +208,7 @@
             this.txtRunID.Size = new System.Drawing.Size(60, 26);
             this.txtRunID.TabIndex = 8;
             this.txtRunID.Text = "1";
+            this.txtRunID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnIncrementRunID
             // 
@@ -221,7 +222,7 @@
             // 
             // btnStopCapture
             // 
-            this.btnStopCapture.Location = new System.Drawing.Point(152, 94);
+            this.btnStopCapture.Location = new System.Drawing.Point(152, 97);
             this.btnStopCapture.Name = "btnStopCapture";
             this.btnStopCapture.Size = new System.Drawing.Size(73, 47);
             this.btnStopCapture.TabIndex = 11;
