@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADTF.cs" />
     <Compile Include="ADTFForm.cs">
       <SubType>Form</SubType>
     </Compile>
